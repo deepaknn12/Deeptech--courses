@@ -34,5 +34,6 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Server is listening on port ${PORT});
-}); kya ishko copy karke direct paste kar dunga backend me to sab thik ho jayega  
+  console.log(`Server is listening on port ${PORT}`);
+});
+ 
