@@ -9,7 +9,7 @@ function Course() {
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get("https://deeptech-courses-2.onrender.com/book"); 
+        const res = await axios.get("https://deeptech-courses-2.onrender.com"); 
         console.log(res.data);
 
        
