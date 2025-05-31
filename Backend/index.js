@@ -26,3 +26,7 @@ app.use("/user", userRoute);
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+app.get("/", (req, res) => {
+  res.send("API is working");
+});
+
