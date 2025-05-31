@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 import { useAuth } from "../context/AuthProvider";
+import { Link } from "react-router-dom"; // agar aap react-router use karte ho toh
 
 function Navbar() {
   const [authUser, setAuthUser] = useAuth();
@@ -24,16 +25,10 @@ function Navbar() {
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setSticky(true);
-      } else {
-        setSticky(false);
-      }
+      setSticky(window.scrollY > 0);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const courses = [
@@ -43,10 +38,15 @@ function Navbar() {
     "Flutter", "Dart", "Ruby on Rails", "Go Lang"
   ];
 
+  // Function to convert course name to url-friendly slug
+  const slugify = (text) =>
+    text.toLowerCase().replace(/\s+/g, "-");
+
   const navItems = (
     <>
       <li tabIndex={0} className="dropdown dropdown-hover relative group">
-        <a className="justify-between cursor-pointer">
+        {/* Course main link */}
+        <Link to="/courses" className="justify-between flex items-center cursor-pointer">
           Course
           <svg
             className="fill-current ml-2 inline-block"
@@ -57,11 +57,15 @@ function Navbar() {
           >
             <path d="M7 10l5 5 5-5H7z" />
           </svg>
-        </a>
-        <ul className="p-2 bg-base-100 rounded-box w-52 shadow-lg absolute left-0 top-full z-50 hidden group-hover:block">
+        </Link>
+
+        {/* Dropdown with all courses */}
+        <ul className="p-2 bg-base-100 rounded-box w-52 shadow-lg absolute left-0 top-full z-50 hidden group-hover:block max-h-80 overflow-y-auto">
           {courses.map((course, idx) => (
             <li key={idx}>
-              <a href="#">{course}</a>
+              <Link to={`/courses/${slugify(course)}`} className="block px-2 py-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
+                {course}
+              </Link>
             </li>
           ))}
         </ul>
@@ -79,7 +83,7 @@ function Navbar() {
       </li>
 
       <li>
-        <a href="#about">About</a>
+        <Link to="/about">About</Link>
       </li>
     </>
   );
@@ -123,7 +127,7 @@ function Navbar() {
                 {navItems}
               </ul>
             </div>
-            <a className="text-2xl font-bold cursor-pointer">DeepTech Courses</a>
+            <Link to="/" className="text-2xl font-bold cursor-pointer">DeepTech Courses</Link>
           </div>
           <div className="navbar-end space-x-3">
             <div className="navbar-center hidden lg:flex">
@@ -157,7 +161,6 @@ function Navbar() {
               </label>
             </div>
             <label className="swap swap-rotate">
-              {/* this hidden checkbox controls the state */}
               <input
                 type="checkbox"
                 className="theme-controller"
@@ -193,7 +196,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      {/* extra spacing so navbar fixed doesn't block content */}
+      {/* Spacer so fixed navbar doesn't block content */}
       <div className="h-20"></div>
     </>
   );
