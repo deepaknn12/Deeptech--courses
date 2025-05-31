@@ -13,8 +13,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 4002;
-const MongoDBURI = process.env.MONGODB_URI;
+PORT=4001;
+const MongoDBURI ="mongodb+srv://kumardeepu841231:kCVNMsfYi42hZoQM@cluster450.ybtvdfy.mongodb.net/Bookstore?retryWrites=true&w=majority&appName=Cluster450";
 
 mongoose.connect(MongoDBURI)
   .then(() => console.log("Connected to MongoDB"))
@@ -26,3 +26,4 @@ app.use("/user", userRoute);
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
+
