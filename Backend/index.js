@@ -10,7 +10,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// ✅ CORS config: Allow frontend from Vercel
+app.use(cors({
+  origin: "https://deeptech-courses.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
+
 app.use(express.json());
 
 const PORT = 4001;
@@ -23,10 +29,10 @@ mongoose.connect(MongoDBURI)
 app.use("/book", bookRoute);
 app.use("/user", userRoute);
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
 app.get("/", (req, res) => {
   res.send("API is working");
 });
 
+app.listen(PORT, () => {
+  console.log(Server is listening on port ${PORT});
+}); kya ishko copy karke direct paste kar dunga backend me to sab thik ho jayega  
