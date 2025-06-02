@@ -49,7 +49,7 @@ function Footer() {
           </div>
         </nav>
         <aside>
-          <p>Copyright © 2024 - All right reserved by DeepTech Courses</p>
+          <p>Copyright © 2024 - All right reserved by E-learning</p>
         </aside>
       </footer>
     </div>
