@@ -32,7 +32,7 @@ function Course() {
             <span className="text-pink-500"> Here!</span>
           </h1>
           <p className="mt-12">
-            At DeepTech Courses, we offer demo lectures for free to give you a
+            At E-learning, we offer demo lectures for free to give you a
             sneak peek into the quality of our content. You can explore these
             free lectures to get a feel of the course material and teaching
             style. If you find the content valuable, you can visit our course
